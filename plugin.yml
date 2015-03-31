@@ -1,0 +1,20 @@
+name: MusicBox
+version: 1.0
+author: Bowser (Tyler)
+main: com.dwarfscraft.musicbox.MusicBox
+
+depends: [NoteBlockAPI, TitleManager]
+
+commands:
+    nextsong:
+        description: Skips the current song X number of times
+        usage: /nextsong <amount to skip>
+    reloadsongs:
+        description: Will reload the songs and restart the player
+    playing:
+        description: Tells you the current song playing
+    setsong:
+        description: Skip directly to a song
+        usage: /setsong [Song file name]
+    songs:
+        description: Tells you a list of loaded songs
