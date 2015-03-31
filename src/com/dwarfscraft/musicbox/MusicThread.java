@@ -114,8 +114,17 @@ public class MusicThread implements Runnable{
 
 	public boolean trySetSong(String songName) {
 		
-		if(!songName.endsWith(".nds")){
-			songName = songName + ".nds";
+		for(Song song : loadedSongs){
+			if(song.getTitle().equalsIgnoreCase(songName)){
+				songPlayer.setPlaying(false);
+				songPlayer = new RadioSongPlayer(song);
+				songPlayer.setPlaying(true);
+				return true;
+			}
+		}
+		
+		if(!songName.endsWith(".nbs")){
+			songName = songName + ".nbs";
 		}
 		
 		for(Song song : loadedSongs){
