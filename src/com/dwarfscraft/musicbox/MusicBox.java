@@ -25,9 +25,15 @@ public class MusicBox extends JavaPlugin {
 		
 		musicThread = new MusicThread(getSongFolder());
 		
-		Bukkit.getPluginManager().registerEvents(new MusicBoxListener(), this);
 		
-		Bukkit.getScheduler().runTaskTimer(this, musicThread, 0, 20);
+		if(musicThread.getSongs().length == 0){
+			getLogger().warning("No songs found! Disabling plugin.");
+			Bukkit.getPluginManager().disablePlugin(this);
+		}else{
+			Bukkit.getPluginManager().registerEvents(new MusicBoxListener(), this);
+			Bukkit.getScheduler().runTaskTimer(this, musicThread, 0, 20);
+		}
+		
 		
 	}
 
@@ -114,7 +120,7 @@ public class MusicBox extends JavaPlugin {
 					if(i % 2 == 0){
 						buf.append(ChatColor.GRAY);
 					}else{
-						buf.append(ChatColor.DARK_GRAY);
+						buf.append(ChatColor.AQUA);
 					}
 					
 					buf.append(songs[i].getTitle());
