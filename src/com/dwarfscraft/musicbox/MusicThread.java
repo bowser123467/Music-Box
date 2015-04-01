@@ -98,11 +98,15 @@ public class MusicThread implements Runnable{
 	}
 	
 	private void popupMessage(){
-		getTitleObject().broadcast();
+		if(MusicBox.getInstance().getConfig().getBoolean("popup_message.enabled")){
+			getTitleObject().broadcast();
+		}
 	}
 	
 	public void popupMessage(Player player){
-		getTitleObject().send(player);
+		if(MusicBox.getInstance().getConfig().getBoolean("popup_message.enabled")){
+			getTitleObject().send(player);
+		}
 	}
 	
 	public void nextSong(int times){

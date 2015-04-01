@@ -23,6 +23,10 @@ public class MusicBox extends JavaPlugin {
 			getSongFolder().mkdirs();
 		}
 		
+		if(!getConfigFile().exists()){
+			saveDefaultConfig();
+		}
+		
 		musicThread = new MusicThread(getSongFolder());
 		
 		
@@ -37,8 +41,9 @@ public class MusicBox extends JavaPlugin {
 		
 	}
 
-	
-	
+
+
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command command,
 			String label, String[] args) {
@@ -188,6 +193,10 @@ public class MusicBox extends JavaPlugin {
 	
 	public static File getSongFolder(){
 		return new File(getInstance().getDataFolder(), "songs/");
+	}
+	
+	public static File getConfigFile(){
+		return new File(getInstance().getDataFolder(), "config.yml");
 	}
 	
 }
