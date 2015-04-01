@@ -60,7 +60,15 @@ public class MusicThread implements Runnable{
 		MusicBox.getInstance().getLogger().info("Loading songs from "+songFolder.getPath());
 		
 		for(File file : files){
-			Song song = NBSDecoder.parse(file);
+			Song song = null;
+			try {
+				song = NBSDecoder.parse(file);
+			} catch (Exception e) {
+				
+				MusicBox.getInstance().getLogger().severe("ERROR: Failed to load song "+file.getPath()+"... "+e.getMessage());
+				
+				continue;
+			}
 			
 			songs.add(song);
 		}
